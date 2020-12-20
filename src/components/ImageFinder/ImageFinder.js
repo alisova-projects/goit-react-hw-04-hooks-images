@@ -38,16 +38,27 @@ export default function ImageFinder() {
   const onLoadMoreBtnClick = () => {
     setCurrentPage(currentPage => currentPage + 1);
 
-    const options = {
-      top: null,
-      behavior: 'smooth',
-    };
-
-    options.top = window.pageYOffset + document.documentElement.clientHeight;
     setTimeout(() => {
-      window.scrollTo(options);
-    }, 1000);
+      window.scrollBy({
+        top: document.documentElement.clientHeight - 130,
+        behavior: 'smooth',
+      });
+    }, 600);
   };
+
+  // const onLoadMoreBtnClick = () => {
+  //   setCurrentPage(currentPage => currentPage + 1);
+
+  //   const options = {
+  //     top: null,
+  //     behavior: 'smooth',
+  //   };
+
+  //   options.top = window.pageYOffset + document.documentElement.clientHeight;
+  //   setTimeout(() => {
+  //     window.scrollTo(options);
+  //   }, 1000);
+  // };
   const handleFormSubmit = query => {
     if (query !== pictureName) {
       setGallery([]);
