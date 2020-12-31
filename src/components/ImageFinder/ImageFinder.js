@@ -25,9 +25,17 @@ export default function ImageFinder() {
     }
     setIsLoading(true);
 
+    const scrollHeight = document.documentElement.scrollHeight;
+
     fetchPictures(pictureName, currentPage)
       .then(images => {
         setGallery(gallery => [...gallery, ...images]);
+        if (currentPage > 1) {
+          window.scrollTo({
+            top: scrollHeight - 120,
+            behavior: 'smooth',
+          });
+        }
       })
       .catch(error => error)
       .finally(() => {
@@ -38,12 +46,12 @@ export default function ImageFinder() {
   const onLoadMoreBtnClick = () => {
     setCurrentPage(currentPage => currentPage + 1);
 
-    setTimeout(() => {
-      window.scrollBy({
-        top: document.documentElement.clientHeight - 130,
-        behavior: 'smooth',
-      });
-    }, 600);
+    // setTimeout(() => {
+    //   window.scrollBy({
+    //     top: document.documentElement.clientHeight - 130,
+    //     behavior: 'smooth',
+    //   });
+    // }, 600);
   };
 
   // const onLoadMoreBtnClick = () => {
